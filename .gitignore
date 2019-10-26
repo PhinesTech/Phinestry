@@ -64,3 +64,5 @@ typings/
 cockroach-data/
 node2
 node3
+certs/
+cockroach-*/
