@@ -59,3 +59,8 @@ typings/
 
 # next.js build output
 .next
+
+# cockroachdb
+cockroach-data/
+node2
+node3
