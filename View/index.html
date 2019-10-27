@@ -4,6 +4,7 @@
 	html5up.net | @ajlkn
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 <html>
 
 <head>
@@ -15,23 +16,6 @@
 		<link rel="stylesheet" href="../Script/assets/css/noscript.css" /></noscript>
 </head>
 
-<body class="is-preload">
-
-	<!-- Navigation -->
-	<nav class="navbar navbar-inverse navbar-static-top">
-		<div class="container">
-			<ul class="nav navbar-nav">
-				<li class="active">
-					<a href="/">Home</a>
-				</li>
-				<li>
-					<a href="/analytics">Analytics</a>
-				</li>
-			</ul>
-		</div>
-	</nav>
-
-	<!-- Header -->
 	<section id="header">
 		<header>
 			<h1>Phinestry</h1>
@@ -54,110 +38,253 @@
 		</footer>
 	</section>
 
-	<!-- Feature 1 -->
-	<article id="first" class="container box style1 right">
-		<a href="#" class="image fit"><img src="../Script/images/pic01.jpg" alt="" /></a>
-		<div class="inner">
-			<header>
-				<h2>Lorem ipsum<br />
-					dolor sit amet</h2>
-			</header>
-			<p>Tortor faucibus ullamcorper nec tempus purus sed penatibus. Lacinia pellentesque eleifend vitae est elit
-				tristique velit tempus etiam.</p>
-		</div>
-	</article>
 
-	<!-- Feature 2 -->
-	<article class="container box style1 left">
-		<a href="#" class="image fit"><img src="../Script/images/pic02.jpg" alt="" /></a>
-		<div class="inner">
-			<header>
-				<h2>Mollis posuere<br />
-					lectus lacus</h2>
-			</header>
-			<p>Rhoncus mattis egestas sed fusce sodales rutrum et etiam ullamcorper. Etiam egestas scelerisque ac duis magna
-				lorem ipsum dolor.</p>
-		</div>
-	</article>
-
-	<!-- Portfolio -->
-	<article class="container box style2">
+	<section id= "thirdPage">
 		<header>
-			<h2>Magnis parturient</h2>
-			<p>Justo phasellus et aenean dignissim<br />
-				placerat cubilia purus lectus.</p>
+			<h2> Google Versus Apple</h2>
 		</header>
-		<div class="inner gallery">
-			<div class="row gtr-0">
-				<div class="col-3 col-12-mobile"><a href="../Script/images/fulls/01.jpg" class="image fit"><img src="../Script/images/thumbs/01.jpg"
-							alt="" title="Ad infinitum" /></a></div>
-				<div class="col-3 col-12-mobile"><a href="../Script/images/fulls/02.jpg" class="image fit"><img src="../Script/images/thumbs/02.jpg"
-							alt="" title="Dressed in Clarity" /></a></div>
-				<div class="col-3 col-12-mobile"><a href="../Script/images/fulls/03.jpg" class="image fit"><img src="../Script/images/thumbs/03.jpg"
-							alt="" title="Raven" /></a></div>
-				<div class="col-3 col-12-mobile"><a href="../Script/images/fulls/04.jpg" class="image fit"><img src="../Script/images/thumbs/04.jpg"
-							alt="" title="I'll have a cup of Disneyland, please" /></a></div>
-			</div>
-			<div class="row gtr-0">
-				<div class="col-3 col-12-mobile"><a href="../Script/images/fulls/05.jpg" class="image fit"><img src="../Script/images/thumbs/05.jpg"
-							alt="" title="Cherish" /></a></div>
-				<div class="col-3 col-12-mobile"><a href="../Script/images/fulls/06.jpg" class="image fit"><img src="../Script/images/thumbs/06.jpg"
-							alt="" title="Different." /></a></div>
-				<div class="col-3 col-12-mobile"><a href="../Script/images/fulls/07.jpg" class="image fit"><img src="../Script/images/thumbs/07.jpg"
-							alt="" title="History was made here" /></a></div>
-				<div class="col-3 col-12-mobile"><a href="../Script/images/fulls/08.jpg" class="image fit"><img src="../Script/images/thumbs/08.jpg"
-							alt="" title="People come and go and walk away" /></a></div>
-			</div>
-		</div>
-	</article>
-
-	<!-- Contact -->
-	<article class="container box style3">
-		<header>
-			<h2>Nisl sed ultricies</h2>
-			<p>Diam dignissim lectus eu ornare volutpat orci.</p>
-		</header>
-		<form method="post" action="#">
-			<div class="row gtr-50">
-				<div class="col-6 col-12-mobile"><input type="text" class="text" name="name" placeholder="Name" /></div>
-				<div class="col-6 col-12-mobile"><input type="text" class="text" name="email" placeholder="Email" /></div>
-				<div class="col-12">
-					<textarea name="message" placeholder="Message"></textarea>
-				</div>
-				<div class="col-12">
-					<ul class="actions">
-						<li><input type="submit" value="Send Message" /></li>
-					</ul>
-				</div>
-			</div>
-		</form>
-	</article>
-
-	<section id="footer">
-		<ul class="icons">
-			<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-			<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-			<li><a href="#" class="icon brands fa-google-plus-g"><span class="label">Google+</span></a></li>
-			<li><a href="#" class="icon brands fa-pinterest"><span class="label">Pinterest</span></a></li>
-			<li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
-			<li><a href="#" class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
-		</ul>
-		<div class="copyright">
-			<ul class="menu">
-				<li>&copy; Untitled. All rights reserved.</li>
-				<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-			</ul>
-		</div>
+		<canvas id="myChart" width="350" height="130"></canvas>
+		<script>
+			var ctx = document.getElementById("myChart");
+var myChart = new Chart(ctx, {
+type: 'bar',
+data: {
+    labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+    datasets: [{
+        label: '',
+        data: [12, 19, 3, 5, 2, 3],
+        backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(255, 159, 64, 0.2)'
+        ],
+        borderColor: [
+            'rgba(255,99,132,1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(255, 159, 64, 1)'
+        ],
+        borderWidth: 1
+    }]
+},
+options: {
+    scales: {
+        yAxes: [{
+            ticks: {
+                beginAtZero:true
+            }
+        }]
+    }
+}
+});
+	</script>
+		
 	</section>
 
-	<!-- Scripts -->
-	<script src="../Script/assets/js/jquery.min.js"></script>
-	<script src="../Script/assets/js/jquery.scrolly.min.js"></script>
-	<script src="../Script/assets/js/jquery.poptrox.min.js"></script>
-	<script src="../Script/assets/js/browser.min.js"></script>
-	<script src="../Script/assets/js/breakpoints.min.js"></script>
-	<script src="../Script/assets/js/util.js"></script>
-	<script src="../Script/assets/js/main.js"></script>
+	<section id= "fourthPage">
+			<header> 
+				<h2>Microsoft Versus Intel</h2> 
+			</header>
+			<canvas id="secondChart" width="350" height="130"></canvas>
+			<script>
+					var ctx = document.getElementById("secondChart");
+					var myChart = new Chart(ctx, {
+					type: 'bar',
+					data: {
+						labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+						datasets: [{
+							label: '# of Votes',
+							data: [12, 19, 3, 5, 2, 3],
+							backgroundColor: [
+								'rgba(255, 99, 132, 0.2)',
+								'rgba(54, 162, 235, 0.2)',
+								'rgba(255, 206, 86, 0.2)',
+								'rgba(75, 192, 192, 0.2)',
+								'rgba(153, 102, 255, 0.2)',
+								'rgba(255, 159, 64, 0.2)'
+							],
+							borderColor: [
+								'rgba(255,99,132,1)',
+								'rgba(54, 162, 235, 1)',
+								'rgba(255, 206, 86, 1)',
+								'rgba(75, 192, 192, 1)',
+								'rgba(153, 102, 255, 1)',
+								'rgba(255, 159, 64, 1)'
+							],
+							borderWidth: 1
+						}]
+					},
+					options: {
+						scales: {
+							yAxes: [{
+								ticks: {
+									beginAtZero:true
+								}
+							}]
+						}
+					}
+					});
+					</script>
+		
+	</section>
+
+
+
+	<section id= "fifthPage">
+			<header> 
+				<h2>Chase Versus Goldman Sachs</h2> 
+			</header>
+			<canvas id="thirdChart" width="350" height="130"></canvas>
+			<script>
+					var ctx = document.getElementById("thirdChart");
+					var myChart = new Chart(ctx, {
+					type: 'bar',
+					data: {
+						labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+						datasets: [{
+							label: '# of Votes',
+							data: [12, 19, 3, 5, 2, 3],
+							backgroundColor: [
+								'rgba(255, 99, 132, 0.2)',
+								'rgba(54, 162, 235, 0.2)',
+								'rgba(255, 206, 86, 0.2)',
+								'rgba(75, 192, 192, 0.2)',
+								'rgba(153, 102, 255, 0.2)',
+								'rgba(255, 159, 64, 0.2)'
+							],
+							borderColor: [
+								'rgba(255,99,132,1)',
+								'rgba(54, 162, 235, 1)',
+								'rgba(255, 206, 86, 1)',
+								'rgba(75, 192, 192, 1)',
+								'rgba(153, 102, 255, 1)',
+								'rgba(255, 159, 64, 1)'
+							],
+							borderWidth: 1
+						}]
+					},
+					options: {
+						scales: {
+							yAxes: [{
+								ticks: {
+									beginAtZero:true
+								}
+							}]
+						}
+					}
+					});
+					</script>
+		
+	</section>
+
+
+
+
+	<section id= "sixthPage">
+			<header> 
+				<h2>Bank of America Versus Wells Fargo </h2> 
+			</header>
+			<canvas id="fourthChart" width="350" height="130"></canvas>
+			<script>
+					var ctx = document.getElementById("fourthChart");
+					var myChart = new Chart(ctx, {
+					type: 'bar',
+					data: {
+						labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+						datasets: [{
+							label: '# of Votes',
+							data: [12, 19, 3, 5, 2, 3],
+							backgroundColor: [
+								'rgba(255, 99, 132, 0.2)',
+								'rgba(54, 162, 235, 0.2)',
+								'rgba(255, 206, 86, 0.2)',
+								'rgba(75, 192, 192, 0.2)',
+								'rgba(153, 102, 255, 0.2)',
+								'rgba(255, 159, 64, 0.2)'
+							],
+							borderColor: [
+								'rgba(255,99,132,1)',
+								'rgba(54, 162, 235, 1)',
+								'rgba(255, 206, 86, 1)',
+								'rgba(75, 192, 192, 1)',
+								'rgba(153, 102, 255, 1)',
+								'rgba(255, 159, 64, 1)'
+							],
+							borderWidth: 1
+						}]
+					},
+					options: {
+						scales: {
+							yAxes: [{
+								ticks: {
+									beginAtZero:true
+								}
+							}]
+						}
+					}
+					});
+					</script>
+		
+	</section>
+
+
+
+
+	<section id= "seventhPage">
+			<header> 
+				<h2>Roche Versus Merck and Co Inc. </h2> 
+			</header>
+			<canvas id="fifthChart" width="350" height="130"></canvas>
+			<script>
+					var ctx = document.getElementById("fifthChart");
+					var myChart = new Chart(ctx, {
+					type: 'bar',
+					data: {
+						labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+						datasets: [{
+							label: '# of Votes',
+							data: [12, 19, 3, 5, 2, 3],
+							backgroundColor: [
+								'rgba(255, 99, 132, 0.2)',
+								'rgba(54, 162, 235, 0.2)',
+								'rgba(255, 206, 86, 0.2)',
+								'rgba(75, 192, 192, 0.2)',
+								'rgba(153, 102, 255, 0.2)',
+								'rgba(255, 159, 64, 0.2)'
+							],
+							borderColor: [
+								'rgba(255,99,132,1)',
+								'rgba(54, 162, 235, 1)',
+								'rgba(255, 206, 86, 1)',
+								'rgba(75, 192, 192, 1)',
+								'rgba(153, 102, 255, 1)',
+								'rgba(255, 159, 64, 1)'
+							],
+							borderWidth: 1
+						}]
+					},
+					options: {
+						scales: {
+							yAxes: [{
+								ticks: {
+									beginAtZero:true
+								}
+							}]
+						}
+					}
+					});
+					</script>
+		
+	</section>
+
+	
+
+
 
 </body>
 
