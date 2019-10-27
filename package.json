@@ -16,8 +16,10 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "got": "^9.6.0",
+    "json-sql": "^0.4.11",
     "node-fetch": "^2.6.0",
     "nodemon": "^1.19.4",
+    "periodic-table": "^0.0.8",
     "pg": "^7.12.1",
     "request": "^2.88.0",
     "simple-oauth2": "^3.0.1"
