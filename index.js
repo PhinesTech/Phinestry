@@ -1,42 +1,78 @@
 const got = require("got");
+
 const oauth2 = require("simple-oauth2");
-require('dotenv').config();
+const fetch = require("node-fetch");
+require("dotenv").config();
 
-const credentials = {
-    client: {
-        id: process.env.CLIENT_ID,
-        secret: process.env.CLIENT_SECRET
+(function() {
+  var Aladdin = new blk.API();
+  Aladdin.portfolioAnalysis(
+    {
+      positions: "MSFT~50|AAPL~50|",
+      filter: "countryCode:US"
     },
-    auth: {
-        tokenHost: "https://idfs.gs.com",
-        authorizePath: "/as/authorization.oauth2",
-        tokenPath: "/as/token.oauth2?scope=read_product_data"
-    }
-};
-
-const callApi = (t) => {
-    const args = {
-        "headers": {
-            "Authorization": "Bearer " + t.token.access_token,
-            "Content-Type": "application/json"
+    function(data) {
+      var portfolio = data.resultMap.PORTFOLIOS[0].portfolios[0];
+      $("#holdings").DataTable({
+        data: portfolio.holdings.map(function(holding) {
+          return [
+            holding.ticker,
+            holding.description,
+            holding.assetType,
+            holding.weight
+          ];
+        }),
+        columns: [
+          {
+            title: "Ticker"
+          },
+          {
+            title: "Description"
+          },
+          {
+            title: "Asset Type"
+          },
+          {
+            title: "Weight"
+          }
+        ],
+        order: [[0, "desc"]]
+      });
+      $("#returns").highcharts("StockChart", {
+        rangeSelector: {
+          selected: 5
         },
-        "body": {
-                "where": {
-                    "gsid": ["75154", "193067", "194688", "902608", "85627"]
-                },
-                "startDate": "2017-01-15",
-                "endDate":"2018-01-15"
-           },
-        "json": true
-    };
+        series: [
+          {
+            name: "Portfolio",
+            data: portfolio.returns.performanceChart.map(function(point) {
+              return [point[0], point[1] * 10000];
+            }),
+            tooltip: {
+              valueDecimals: 2
+            }
+          }
+        ]
+      });
+    }
+  );
+});
 
-    got.post("https://api.marquee.gs.com/v1/data/USCANFPP_MINI/query", args)
-        .then(response => console.log(response.body), console.error.bind(console))
-};
+const request = require("request");
 
-const oauth = oauth2.create(credentials);
-oauth.clientCredentials
-      .getToken({})
-      .then(r => oauth.accessToken.create(r))
-      .then(callApi)
-      .then(console.log, console.error);
+var companies = [
+  "https://www.blackrock.com/tools/hackathon/performance?identifiers=AAPL",
+
+]
+
+request(
+  "https://www.blackrock.com/tools/hackathon/performance?identifiers=AAPL",
+  { json: true },
+  (err, res, body) => {
+    if (err) {
+      return console.log(err);
+    }
+    console.log(body.resultMap); //body.whatever we need
+  }
+);
+
