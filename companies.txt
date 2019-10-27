@@ -1,0 +1,10 @@
+"https://www.blackrock.com/tools/hackathon/performance?identifiers=AAPL", //Apple
+"https://www.blackrock.com/tools/hackathon/performance?identifiers=GOOGL" //Google
+"https://www.blackrock.com/tools/hackathon/performance?identifiers=MSFT"  //Microsoft
+"https://www.blackrock.com/tools/hackathon/performance?identifiers=INTC"  //Intel
+"https://www.blackrock.com/tools/hackathon/performance?identifiers=JPM"   //Chase
+"https://www.blackrock.com/tools/hackathon/performance?identifiers=GS",   //GoldMan Sacchs
+"https://www.blackrock.com/tools/hackathon/performance?identifiers=BAC"   // Bank of America
+"https://www.blackrock.com/tools/hackathon/performance?identifiers=WFC"   //Wells Fargo
+"https://www.blackrock.com/tools/hackathon/performance?identifiers=RHHBY" //Roche
+ "https://www.blackrock.com/tools/hackathon/performance?identifiers=MRK"  //Merc and Co

@@ -1,0 +1,21 @@
+curl -X GET -i -G \
+    -H "Authorization:Bearer DQ3zna83eXBfbHcSJWhL5oY4PvyM" \
+    -H "Content-Type:application/json" \
+    -d ticker=AA \
+    -d exchange=NYSE \
+    -d asOfTime=2017-02-28T16:29:00Z \
+    -d fields=id,name,gsid,ticker,bbid \
+    https://api.marquee.gs.com/v1/assets/data
+
+
+curl -i -H "Content-Type: application/x-www-form-urlencoded" \
+    -X POST "https://idfs.gs.com/as/token.oauth2" \
+    -d "grant_type=client_credentials" \
+    -d "client_id=7cd23c2740784691ae5a0d550ce04ae8" \
+    -d "client_secret=b4ddf1bf09407ba56281551534a8f9455c19058f0a9f15b44136b876d8371e04" \
+    -d "scope=execute_trades"
+
+curl -X GET -i \
+     -H "Authorization:Bearer DQ3zna83eXBfbHcSJWhL5oY4PvyM" \
+     -H "Content-Type:application/json" \
+     https://api.marquee.gs.com/v1/trades
