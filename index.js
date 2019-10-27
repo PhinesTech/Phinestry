@@ -1,78 +1,72 @@
-const got = require("got");
-
-const oauth2 = require("simple-oauth2");
-const fetch = require("node-fetch");
+const async = require("async");
+const pg = require("pg");
 require("dotenv").config();
 
-(function() {
-  var Aladdin = new blk.API();
-  Aladdin.portfolioAnalysis(
-    {
-      positions: "MSFT~50|AAPL~50|",
-      filter: "countryCode:US"
-    },
-    function(data) {
-      var portfolio = data.resultMap.PORTFOLIOS[0].portfolios[0];
-      $("#holdings").DataTable({
-        data: portfolio.holdings.map(function(holding) {
-          return [
-            holding.ticker,
-            holding.description,
-            holding.assetType,
-            holding.weight
-          ];
-        }),
-        columns: [
-          {
-            title: "Ticker"
-          },
-          {
-            title: "Description"
-          },
-          {
-            title: "Asset Type"
-          },
-          {
-            title: "Weight"
-          }
-        ],
-        order: [[0, "desc"]]
+/**
+ * ! CockroachDB
+ */
+
+// Connect to the "bank" database.
+var config = {
+  user: "maxroach",
+  host: "gcp-us-west1.phinestry.crdb.io",
+  database: "defaultdb",
+  password: "8mmCRU6UsgGxUG6",
+  port: 26257,
+  ssl: {}
+};
+
+// Create a pool.
+var pool = new pg.Pool(config);
+
+pool.connect(function(err, client, done) {
+  // Close communication with the database and exit.
+  var finish = function() {
+    done();
+    process.exit();
+  };
+
+  if (err) {
+    console.error("could not connect to cockroachdb", err);
+    finish();
+  }
+  async.waterfall(
+    [
+      function(next) {
+        // Create the 'accounts' table.
+        client.query(
+          "CREATE TABLE IF NOT EXISTS accounts (id INT PRIMARY KEY, balance INT);",
+          next
+        );
+      },
+      // function (results, next) {
+      //     // Insert two rows into the 'accounts' table.
+      //     client.query('INSERT INTO accounts (id, balance) VALUES (1, 1000), (2, 250);', next);
+      // },
+      function(results, next) {
+        // Insert two rows into the 'accounts' table.
+        client.query("delete from accounts;", next);
+      },
+      function(results, next) {
+        // Print out account balances.
+        client.query("SELECT id, balance FROM accounts;", next);
+      }
+    ],
+    function(err, results) {
+      if (err) {
+        console.error(
+          "Error inserting into and selecting from accounts: ",
+          err
+        );
+        finish();
+      }
+
+      console.log("Initial balances:");
+      results.rows.forEach(function(row) {
+        console.log(row);
       });
-      $("#returns").highcharts("StockChart", {
-        rangeSelector: {
-          selected: 5
-        },
-        series: [
-          {
-            name: "Portfolio",
-            data: portfolio.returns.performanceChart.map(function(point) {
-              return [point[0], point[1] * 10000];
-            }),
-            tooltip: {
-              valueDecimals: 2
-            }
-          }
-        ]
-      });
+
+      finish();
     }
   );
 });
-
-const request = require("request");
-
-var companies = [
-  "https://www.blackrock.com/tools/hackathon/performance?identifiers=AAPL",
-
-]
-
-request(
-  "https://www.blackrock.com/tools/hackathon/performance?identifiers=AAPL",
-  { json: true },
-  (err, res, body) => {
-    if (err) {
-      return console.log(err);
-    }
-    console.log(body.resultMap); //body.whatever we need
-  }
-);
-

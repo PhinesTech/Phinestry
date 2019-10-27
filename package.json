@@ -6,15 +6,20 @@
   "author": "Adrian Darian <adarian@ucmerced.edu>",
   "license": "MIT",
   "scripts": {
-    "start": "node index.js",
-    "goldman": "node goldman.js",
-    "dev": "nodemon index.js"
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "clean": "rm -rf node_modules/ yarn.lock",
+    "goldman": "node goldman.js"
   },
   "dependencies": {
+    "async": "^3.1.0",
     "dotenv": "^8.2.0",
+    "express": "^4.17.1",
     "got": "^9.6.0",
     "node-fetch": "^2.6.0",
     "nodemon": "^1.19.4",
+    "pg": "^7.12.1",
+    "request": "^2.88.0",
     "simple-oauth2": "^3.0.1"
   }
 }
