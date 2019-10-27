@@ -5,13 +5,25 @@ const pg = require("pg");
 require("dotenv").config();
 
 // entire dataset
-for (var i = 1; i < 118; i++) {
+for (var i = 1; i < 30; i++) {
   var allElements = pt.numbers[i];
+
+  function toString(o) {
+    Object.keys(o).forEach(k => {
+      if (typeof o[k] === 'object') {
+        return toString(o[k]);
+      }
+      
+      o[k] = '' + o[k];
+    });
+    
+    return o;
+  }
 
   var sql = jsonSql.build({
     type: "insert",
     table: "periodic_elements",
-    values: allElements
+    values: toString(allElements)
   });
   console.log(sql);
 
@@ -49,7 +61,7 @@ for (var i = 1; i < 118; i++) {
           client.query(sql, next);
         },
         function(results, next) {
-          client.query("SELECT * FROM defaultdb;", next);
+          client.query("SELECT * FROM periodic_elements;", next);
         }
       ],
       function(err, results) {
