@@ -17,7 +17,7 @@
     "express": "^4.17.1",
     "got": "^9.6.0",
     "json-sql": "^0.4.11",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.1",
     "nodemon": "^1.19.4",
     "periodic-table": "^0.0.8",
     "pg": "^7.12.1",
